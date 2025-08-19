@@ -1,0 +1,41 @@
+
+:root {
+  --bg: #0f172a;
+  --panel: #111827;
+  --card: #0b1220;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Arial;
+  background: linear-gradient(175deg, #0b1020, #171a2b 60%, #0b1020); color: var(--text); }
+header { padding: 16px 24px; border-bottom: 1px solid #1f2937; }
+h1 { margin: 0 0 12px 0; font-size: 20px; }
+nav { display: flex; gap: 8px; flex-wrap: wrap; }
+.tab-btn { background: #0b1220; color: var(--text); border: 1px solid #233; padding: 8px 12px;
+  border-radius: 10px; cursor: pointer; box-shadow: var(--shadow); }
+.tab-btn.active { outline: 2px solid var(--accent); }
+main { padding: 20px 24px; max-width: 1100px; margin: 0 auto; }
+.tab { display: none; }
+.tab.active { display: block; }
+.card { background: var(--card); border: 1px solid #1f2937; border-radius: 16px; padding: 16px; box-shadow: var(--shadow); }
+.grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+input, select { background: #0f172a; border: 1px solid #243142; color: var(--text); padding: 10px; border-radius: 10px; }
+.actions { display: flex; gap: 12px; margin-top: 8px; }
+button { background: var(--accent); color: #06120a; border: none; padding: 10px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; }
+button.secondary { background: #0b1220; color: var(--text); border: 1px solid #233; }
+button.danger { background: var(--danger); color: white; }
+.toolbar { display: flex; gap: 10px; margin: 10px 0; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; background: var(--panel); border-radius: 12px; overflow: hidden; }
+th, td { padding: 10px; border-bottom: 1px solid #223; font-size: 14px; }
+th { text-align: left; color: #d1d5db; background: #0b1220; }
+tbody tr:hover { background: rgba(255,255,255,.02); }
+#indicadores { margin-top: 10px; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.indic { background: var(--panel); border: 1px solid #223; border-radius: 12px; padding: 12px; }
+footer { padding: 24px; text-align: center; color: var(--muted); }
+.badge { background: #0b1220; border: 1px solid #233; border-radius: 999px; padding: 2px 8px; font-size: 12px; color: var(--text); }
+.warn { color: #f59e0b; }

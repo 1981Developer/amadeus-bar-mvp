@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amadeus Bar - MVP Sprint 2</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<header>
+  <h1>Amadeus Bar · MVP (Sprint 2)</h1>
+  <nav>
+    <button class="tab-btn active" data-tab="estoque">Estoque</button>
+    <button class="tab-btn" data-tab="vendas">Vendas (Comandas)</button>
+    <button class="tab-btn" data-tab="caixa">Fluxo de Caixa</button>
+    <button class="tab-btn" data-tab="agenda">Agenda de Eventos</button>
+    <button class="tab-btn" data-tab="relatorios">Relatórios</button>
+  </nav>
+</header>
+<main>
+  <section id="estoque" class="tab active">
+    <h2>Estoque</h2>
+    <form id="formProduto" class="card">
+      <div class="grid">
+        <label>Produto
+          <input type="text" id="p_nome" required placeholder="ex.: Cerveja Pilsen 600ml" />
+        </label>
+        <label>Categoria
+          <input type="text" id="p_categoria" placeholder="ex.: Bebida" />
+        </label>
+        <label>Quantidade
+          <input type="number" id="p_qtd" min="0" value="0" required />
+        </label>
+        <label>Validade
+          <input type="date" id="p_validade" />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="submit">Adicionar / Atualizar</button>
+        <button type="button" id="btnLimparProduto" class="secondary">Limpar</button>
+      </div>
+      <input type="hidden" id="p_id" />
+    </form>
+    <div class="toolbar">
+      <input id="filtroEstoque" placeholder="Filtrar por nome/categoria..." />
+      <button id="btnSeed" class="secondary">Carregar dados de exemplo</button>
+    </div>
+    <table id="tblEstoque">
+      <thead>
+        <tr>
+          <th>Produto</th><th>Categoria</th><th>Qtd</th><th>Validade</th><th>Ações</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+  <section id="vendas" class="tab">
+    <h2>Vendas / Comandas</h2>
+    <form id="formVenda" class="card">
+      <div class="grid">
+        <label>Produto
+          <select id="v_produto"></select>
+        </label>
+        <label>Qtd
+          <input type="number" id="v_qtd" min="1" value="1" required />
+        </label>
+        <label>Mesa/Cliente
+          <input type="text" id="v_mesa" placeholder="Mesa 3 / João" />
+        </label>
+        <label>Preço Unitário (R$)
+          <input type="number" step="0.01" id="v_preco" placeholder="ex.: 14.90" />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="submit">Registrar Venda</button>
+      </div>
+    </form>
+    <table id="tblVendas">
+      <thead>
+        <tr>
+          <th>Data</th><th>Produto</th><th>Qtd</th><th>Mesa/Cliente</th><th>Preço Unit.</th><th>Total</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+  <section id="caixa" class="tab">
+    <h2>Fluxo de Caixa</h2>
+    <form id="formCaixa" class="card">
+      <div class="grid">
+        <label>Tipo
+          <select id="c_tipo">
+            <option value="entrada">Entrada</option>
+            <option value="saida">Saída</option>
+          </select>
+        </label>
+        <label>Descrição
+          <input type="text" id="c_desc" placeholder="ex.: Pagamento banda / Compra emergencial" required />
+        </label>
+        <label>Valor (R$)
+          <input type="number" step="0.01" id="c_valor" min="0" required />
+        </label>
+        <label>Data
+          <input type="date" id="c_data" />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="submit">Lançar</button>
+      </div>
+    </form>
+    <div class="toolbar">
+      <input id="filtroCaixa" placeholder="Filtrar por descrição..." />
+    </div>
+    <table id="tblCaixa">
+      <thead>
+        <tr>
+          <th>Data</th><th>Tipo</th><th>Descrição</th><th>Valor (R$)</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" style="text-align:right;"><strong>Saldo:</strong></td>
+          <td id="saldoCaixa">0,00</td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+  <section id="agenda" class="tab">
+    <h2>Agenda de Eventos</h2>
+    <form id="formEvento" class="card">
+      <div class="grid">
+        <label>Data
+          <input type="date" id="e_data" required />
+        </label>
+        <label>Artista/Evento
+          <input type="text" id="e_titulo" required placeholder="ex.: Trio de Samba" />
+        </label>
+        <label>Notas
+          <input type="text" id="e_notas" placeholder="ex.: 20h · Couvert R$ 8" />
+        </label>
+      </div>
+      <div class="actions">
+        <button type="submit">Adicionar Evento</button>
+      </div>
+    </form>
+    <table id="tblAgenda">
+      <thead>
+        <tr>
+          <th>Data</th><th>Evento</th><th>Notas</th><th>Ações</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+  <section id="relatorios" class="tab">
+    <h2>Relatórios</h2>
+    <div class="card">
+      <div class="grid">
+        <label>Período (início)
+          <input type="date" id="r_ini">
+        </label>
+        <label>Período (fim)
+          <input type="date" id="r_fim">
+        </label>
+      </div>
+      <div class="actions">
+        <button id="btnRelatorio">Gerar Indicadores</button>
+        <button id="btnCSV" class="secondary">Exportar Vendas (CSV)</button>
+      </div>
+      <div id="indicadores" class="indics"></div>
+    </div>
+  </section>
+</main>
+<footer><small>© Amadeus Bar — MVP Sprint 2 · LocalStorage · Sem backend</small></footer>
+<script src="app.js"></script>
+</body>
+</html>
